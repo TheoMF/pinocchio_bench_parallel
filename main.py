@@ -45,4 +45,4 @@ if __name__ == "__main__":
         data = json.load(f)
         nb_max_threads = data["nb_max_threads"]
         plot_results(nb_max_threads, data["aba"], "ibukidake", "aba")
-        plot_results(nb_max_threads, data["aba"], "ibukidake", "rnea")
+        plot_results(nb_max_threads, data["rnea"], "ibukidake", "rnea")
