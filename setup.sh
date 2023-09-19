@@ -9,7 +9,7 @@ cd pinocchio && mkdir build && cd build
 export CMAKE_PREFIX_PATH=$(python3 -m cmeel cmake):$CMAKE_PREFIX_PATH
 cmake .. \
     -DCMAKE_BUILD_TYPE=Release \
-    -DCMAKE_INSTALL_PREFIX=<to determine> \
+    -DCMAKE_INSTALL_PREFIX=${PWD}/install \
     -DBUILD_WITH_COLLISION_SUPPORT=ON \
     -DBUILD_BENCHMARK=ON \
     -DBUILD_WITH_OPENMP_SUPPORT=ON \
