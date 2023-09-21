@@ -1,5 +1,6 @@
 import matplotlib.pyplot as plt
 import json
+from subprocess import check_call
 
 
 def plot_results(nb_max_threads, values, machine_name, algo_name, figsize):
@@ -18,19 +19,9 @@ def plot_results(nb_max_threads, values, machine_name, algo_name, figsize):
     # plot executions_time and expected_executions_time
     plt.clf()
     plt.figure(figsize=figsize)
+    plt.bar(threads, executions_time, label="execution time", color="g")
     plt.bar(
-        threads,
-        executions_time,
-        label="execution time",
-        width=0.6,
-        color="g",
-    )
-    plt.bar(
-        threads,
-        expected_executions_time,
-        label="expected execution time",
-        width=0.6,
-        color="b",
+        threads, expected_executions_time, label="expected execution time", color="b"
     )
     plt.ylabel("execution time (us)")
     plt.xlabel("number of threads")
@@ -40,17 +31,14 @@ def plot_results(nb_max_threads, values, machine_name, algo_name, figsize):
     )
 
     plt.ylim([0, initial_val + 0.5])
-    plt.savefig(machine_name + "_" + algo_name + "_execution_time.png")
+    file_name = machine_name + "_" + algo_name + "_execution_time.png"
+    plt.savefig(file_name)
+    check_call(["mv", file_name, "plots/" + machine_name])
 
     # plot executions_time*nb_threads
     plt.clf()
     plt.figure(figsize=figsize)
-    plt.bar(
-        threads,
-        executions_time_times_nb_threads,
-        width=0.6,
-        color="g",
-    )
+    plt.bar(threads, executions_time_times_nb_threads, color="g")
     plt.ylabel("execution time*number of threads")
     plt.xlabel("number of threads")
 
@@ -60,7 +48,9 @@ def plot_results(nb_max_threads, values, machine_name, algo_name, figsize):
         + " with machine "
         + machine_name
     )
-    plt.savefig(machine_name + "_" + algo_name + "_execution_time*nb_threads.png")
+    file_name = machine_name + "_" + algo_name + "_execution_time*nb_threads.png"
+    plt.savefig(file_name)
+    check_call(["mv", file_name, "plots/" + machine_name])
 
 
 if __name__ == "__main__":
