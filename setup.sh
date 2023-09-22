@@ -2,7 +2,7 @@
 
 #sudo apt install assimp-utils robotpkg-example-robot-data robotpkg-hpp-fcl+doc robotpkg-py38-eigenpy robotpkg-py38-hpp-fcl libgomp1
 python3 -m pip install -U pip
-python3 -m pip install hpp-fcl cmeel-eigen cmeel-urdfdom-headers
+python3 -m pip install hpp-fcl cmeel-eigen cmeel-urdfdom-headers cmeel-urdfdom
 cd ..
 git clone --recursive git@gitlab.inria.fr:jucarpen/pinocchio.git
 cd pinocchio && mkdir build && cd build

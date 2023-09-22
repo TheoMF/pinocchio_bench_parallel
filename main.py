@@ -34,6 +34,7 @@ def plot_results(nb_max_threads, values, machine_name, algo_name, figsize):
     file_name = machine_name + "_" + algo_name + "_execution_time.png"
     plt.savefig(file_name)
     check_call(["mv", file_name, "plots/" + machine_name])
+    plt.close()
 
     # plot executions_time*nb_threads
     plt.clf()
@@ -51,6 +52,7 @@ def plot_results(nb_max_threads, values, machine_name, algo_name, figsize):
     file_name = machine_name + "_" + algo_name + "_execution_time*nb_threads.png"
     plt.savefig(file_name)
     check_call(["mv", file_name, "plots/" + machine_name])
+    plt.close()
 
 
 if __name__ == "__main__":
@@ -69,3 +71,10 @@ if __name__ == "__main__":
         nb_max_threads = data["nb_max_threads"]
         plot_results(nb_max_threads, data["rnea"], "pirovano", "rnea", (20, 6))
         plot_results(nb_max_threads, data["aba"], "pirovano", "aba", (20, 6))
+        plot_results(nb_max_threads, data["rnea_2"], "pirovano", "rnea_2", (20, 6))
+        plot_results(nb_max_threads, data["aba_2"], "pirovano", "aba_2", (20, 6))
+    with open("dolcino.json") as f:
+        data = json.load(f)
+        nb_max_threads = data["nb_max_threads"]
+        plot_results(nb_max_threads, data["rnea"], "dolcino", "rnea", (10, 6))
+        plot_results(nb_max_threads, data["aba"], "dolcino", "aba", (10, 6))
