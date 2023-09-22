@@ -73,3 +73,8 @@ if __name__ == "__main__":
         plot_results(nb_max_threads, data["aba"], "pirovano", "aba", (20, 6))
         plot_results(nb_max_threads, data["rnea_2"], "pirovano", "rnea_2", (20, 6))
         plot_results(nb_max_threads, data["aba_2"], "pirovano", "aba_2", (20, 6))
+    with open("dolcino.json") as f:
+        data = json.load(f)
+        nb_max_threads = data["nb_max_threads"]
+        plot_results(nb_max_threads, data["rnea"], "dolcino", "rnea", (10, 6))
+        plot_results(nb_max_threads, data["aba"], "dolcino", "aba", (10, 6))
