@@ -1,5 +1,6 @@
 import matplotlib.pyplot as plt
 import json
+from pathlib import Path
 from subprocess import check_call
 
 
@@ -56,25 +57,14 @@ def plot_results(nb_max_threads, values, machine_name, algo_name, figsize):
 
 
 if __name__ == "__main__":
-    with open("askew.json") as f:
-        data = json.load(f)
-        nb_max_threads = data["nb_max_threads"]
-        plot_results(nb_max_threads, data["rnea"], "askew", "rnea", (10, 6))
-        plot_results(nb_max_threads, data["aba"], "askew", "aba", (10, 6))
-    with open("ibukidake.json") as f:
-        data = json.load(f)
-        nb_max_threads = data["nb_max_threads"]
-        plot_results(nb_max_threads, data["aba"], "ibukidake", "aba", (10, 6))
-        plot_results(nb_max_threads, data["rnea"], "ibukidake", "rnea", (10, 6))
-    with open("pirovano.json") as f:
-        data = json.load(f)
-        nb_max_threads = data["nb_max_threads"]
-        plot_results(nb_max_threads, data["rnea"], "pirovano", "rnea", (20, 6))
-        plot_results(nb_max_threads, data["aba"], "pirovano", "aba", (20, 6))
-        plot_results(nb_max_threads, data["rnea_2"], "pirovano", "rnea_2", (20, 6))
-        plot_results(nb_max_threads, data["aba_2"], "pirovano", "aba_2", (20, 6))
-    with open("dolcino.json") as f:
-        data = json.load(f)
-        nb_max_threads = data["nb_max_threads"]
-        plot_results(nb_max_threads, data["rnea"], "dolcino", "rnea", (10, 6))
-        plot_results(nb_max_threads, data["aba"], "dolcino", "aba", (10, 6))
+    for json_file in Path().glob("*.json"):
+        machine_name = str(json_file).split(".")[0]
+        with open(json_file) as f:
+            data = json.load(f)
+            nb_max_threads = data["nb_max_threads"]
+            plot_results(
+                nb_max_threads, data["rnea"], machine_name, "rnea", data["plot_size"]
+            )
+            plot_results(
+                nb_max_threads, data["aba"], machine_name, "aba", data["plot_size"]
+            )
